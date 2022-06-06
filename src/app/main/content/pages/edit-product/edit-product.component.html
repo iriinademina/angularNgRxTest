@@ -1,0 +1,5 @@
+<app-edit-product-form
+  [productData]="(changedProduct$ | async)"
+  (changeProduct)="onSubmit($event)"
+  (deleteProduct)="onDelete($event)"
+></app-edit-product-form>
