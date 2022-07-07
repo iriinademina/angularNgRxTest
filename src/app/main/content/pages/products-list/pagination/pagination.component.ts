@@ -58,7 +58,6 @@ export class PaginationComponent implements OnInit {
 
   onNextPage(): void {
     this.currentPage += 1;
-    console.log(this.currentPage);
     this.getProducts();
   }
 
