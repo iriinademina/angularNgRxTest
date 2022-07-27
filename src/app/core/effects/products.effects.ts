@@ -2,14 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Action, Store, select } from '@ngrx/store';
 import { createEffect, ofType, Actions } from '@ngrx/effects';
-import {
-  mergeMap,
-  map,
-  catchError,
-  withLatestFrom,
-  switchMap,
-} from 'rxjs/operators';
-import { HttpClient } from '@angular/common/http';
+import { map, catchError, switchMap } from 'rxjs/operators';
 import { ProductsService } from '../services/products.service';
 import { RootState } from '../reducers';
 import {
@@ -27,13 +20,8 @@ import {
   requestProductByIdFailure,
   requestDeleteProduct,
   requestDeleteProductSuccess,
-  requestDeleteProductFailure
+  requestDeleteProductFailure,
 } from '../actions';
-import {
-  isLoadingProductsSelector,
-  allProductsSelector,
-} from 'src/app/core/selectors';
-
 import { Product } from '../models/product.model';
 
 @Injectable()
@@ -68,7 +56,6 @@ export class ProductsEffects {
       switchMap(({ id }) => {
         return this.productsService.getProductById(id).pipe(
           map((product: Product) => {
-           
             return requestProductByIdSuccess({ product });
           }),
           catchError((error: Error) => {
@@ -79,13 +66,11 @@ export class ProductsEffects {
     )
   );
 
-
   // update
   UpdateProduct$: Observable<Action> = createEffect(() =>
     this.action$.pipe(
       ofType(requestUpdateProduct),
-      switchMap(({ editedProduct, id}) => {
-        console.log('data from update', editedProduct,id);
+      switchMap(({ editedProduct, id }) => {
         return this.productsService.updateProduct(editedProduct, id).pipe(
           map((product: Product) => {
             return requestUpdateProductSuccess({ product });
@@ -103,7 +88,6 @@ export class ProductsEffects {
     this.action$.pipe(
       ofType(requestCreateProduct),
       switchMap(({ productData }) => {
-        console.log('data', productData);
         return this.productsService.createProduct(productData).pipe(
           map((product: Product) => {
             return requestCreateProductSuccess({ product });
@@ -116,23 +100,20 @@ export class ProductsEffects {
     )
   );
 
-// delete
-DeleteProduct$: Observable<Action> = createEffect(() =>
-this.action$.pipe(
-  ofType(requestDeleteProduct),
-  switchMap(({ id }) => {
-    console.log('delete id', id);
-    return this.productsService.deleteProduct(id).pipe(
-      map((message: string) => {
-        console.log('message delete success', message)
-        return requestDeleteProductSuccess({ message });
-      }),
-      catchError((error: Error) => {
-        return of(requestDeleteProductFailure(error));
+  // delete
+  DeleteProduct$: Observable<Action> = createEffect(() =>
+    this.action$.pipe(
+      ofType(requestDeleteProduct),
+      switchMap(({ id }) => {
+        return this.productsService.deleteProduct(id).pipe(
+          map((message: string) => {
+            return requestDeleteProductSuccess({ message });
+          }),
+          catchError((error: Error) => {
+            return of(requestDeleteProductFailure(error));
+          })
+        );
       })
-    );
-  })
-)
-);
+    )
+  );
 }
-

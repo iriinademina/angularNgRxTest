@@ -1,17 +1,14 @@
-
 <div>
-  <a 
-  class="new-product-btn"
-    [routerLink]="['/new-product']"
-  >New product</a>
+  <a class="new-product-btn" [routerLink]="['/new-product']">New product</a>
   <h3>List of products</h3>
   <div>
-  <app-product-item
-    *ngFor="let product of (products$ | async)"
-    [product]="product"
-  ></app-product-item>
-</div>
- <app-pagination
-  [allPagesCount]="allPages" (changePage)="onPageChange($event)"
- ></app-pagination>
+    <app-product-item
+      *ngFor="let product of products$ | async"
+      [product]="product"
+    ></app-product-item>
+  </div>
+  <app-pagination
+    [allPagesCount]="allPages"
+    (changePage)="onPageChange($event)"
+  ></app-pagination>
 </div>

@@ -3,14 +3,8 @@
     {
       "title": "POMEGRANATES",
       "description": "Dole has a wide portfolio of over 25 produce items, but focuses on apples, lemons, oranges, tangerines, pears and grapes. ",
-      "price": 45,
+      "price": 78,
       "id": 5
-    },
-    {
-      "title": "cucumber",
-      "description": "the best cucucmber",
-      "price": 4,
-      "id": 8
     },
     {
       "title": "apple 78",
@@ -20,8 +14,8 @@
     },
     {
       "title": "apple 3",
-      "description": "the best apple 3",
-      "price": 33,
+      "description": "the best apple 35",
+      "price": 35,
       "id": 11
     },
     {
@@ -47,6 +41,12 @@
       "description": "the best apple 6",
       "price": 55,
       "id": 18
+    },
+    {
+      "title": "orange",
+      "description": "the best orange",
+      "price": 23,
+      "id": 19
     }
   ]
 }

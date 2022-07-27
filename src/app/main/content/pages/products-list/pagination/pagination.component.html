@@ -1,41 +1,46 @@
-
 <div class="pagination__container">
-    <div class="pagination__button pagination__page-first"
-         [ngClass]="{
-         'pagination__button--disabled' : currentPage === 1
-         }"
-         (click)="onFirstPage()"
-    >
-      First
-    </div>
-    <div class="pagination__button pagination__page-previous"
-
+  <div
+    class="pagination__button pagination__page-first"
     [ngClass]="{
-      'pagination__button--disabled' : (currentPage === 1)}"
-         (click)="onPreviousPage()"
-    >
-      Previous
-    </div>
-    <div class="pagination__page-active">
-      <input class="pagination__current-page" 
-      (input)="onSetPage($event)" 
-      [value]="currentPage"> / <span>{{allPagesCount}}</span>
-    </div>
-    <div class="pagination__button pagination__page-next"
-    [ngClass]="{
-      'pagination__button--disabled' : currentPage === allPagesCount}"
-     
-         (click)="onNextPage()"
-    >
-      Next
-    </div>
-    <div class="pagination__button pagination__page-last"
-    [ngClass]="{
-      'pagination__button--disabled' : currentPage === allPagesCount}"
-         (click)="onLastPage()"
-    >
-      Last
-    </div>
+      'pagination__button--disabled': currentPage === 1
+    }"
+    (click)="onFirstPage()"
+  >
+    First
   </div>
-
-
+  <div
+    class="pagination__button pagination__page-previous"
+    [ngClass]="{
+      'pagination__button--disabled': currentPage === 1
+    }"
+    (click)="onPreviousPage()"
+  >
+    Previous
+  </div>
+  <div class="pagination__page-active">
+    <input
+      class="pagination__current-page"
+      (input)="onSetPage($event)"
+      [value]="currentPage"
+    />
+    / <span>{{ allPagesCount }}</span>
+  </div>
+  <div
+    class="pagination__button pagination__page-next"
+    [ngClass]="{
+      'pagination__button--disabled': currentPage === allPagesCount
+    }"
+    (click)="onNextPage()"
+  >
+    Next
+  </div>
+  <div
+    class="pagination__button pagination__page-last"
+    [ngClass]="{
+      'pagination__button--disabled': currentPage === allPagesCount
+    }"
+    (click)="onLastPage()"
+  >
+    Last
+  </div>
+</div>

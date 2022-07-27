@@ -1,36 +1,29 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Product } from '../../../../../core/models/product.model';
 import {
   requestGetProducts,
-  requestCurrentPageOfProducts
+  requestCurrentPageOfProducts,
 } from 'src/app/core/actions';
-import { Store, select } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { RootState } from 'src/app/core/reducers';
-import {
-  productsCurrentPage
-} from 'src/app/core/selectors';
-import { ProductsService } from 'src/app/core/services/products.service';
+import { productsCurrentPage } from 'src/app/core/selectors';
 
 @Component({
   selector: 'app-pagination',
   templateUrl: './pagination.component.html',
-  styleUrls: ['./pagination.component.scss']
+  styleUrls: ['./pagination.component.scss'],
 })
 export class PaginationComponent implements OnInit {
-
   @Input() itemsPerPage: number;
   @Input() itemsNumber: number;
   @Input() allPagesCount: number;
   @Output() changePage: EventEmitter<number> = new EventEmitter<number>();
   private _currentPage: number;
-  constructor( private store$: Store<RootState>, private productService: ProductsService ) { }
+  constructor(private store$: Store<RootState>) {}
 
   ngOnInit(): void {
-   this.store$.select(productsCurrentPage).subscribe( page => {
-    let pageAfterReload = Number(this.productService.getCurrentPageOnStore());
+    this.store$.select(productsCurrentPage).subscribe((page) => {
       this._currentPage = page;
-  }
-   );
+    });
   }
 
   get currentPage(): number {
@@ -39,7 +32,7 @@ export class PaginationComponent implements OnInit {
 
   set currentPage(page) {
     this._currentPage = page;
-    this.store$.dispatch(requestCurrentPageOfProducts({ currentPage: page}));
+    this.store$.dispatch(requestCurrentPageOfProducts({ currentPage: page }));
   }
 
   onSetPage(event: any): void {
@@ -67,7 +60,6 @@ export class PaginationComponent implements OnInit {
   }
 
   getProducts() {
-    this.store$.dispatch(requestGetProducts({ page: this.currentPage}));
+    this.store$.dispatch(requestGetProducts({ page: this.currentPage }));
   }
-
 }

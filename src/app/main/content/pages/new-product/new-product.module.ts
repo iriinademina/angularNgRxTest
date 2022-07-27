@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
-//import { ReactiveFormsModule } from '@angular/forms';
 import { NewProductComponent } from './new-product.component';
 
 const routes: Routes = [

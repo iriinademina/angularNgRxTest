@@ -1,9 +1,8 @@
 <div>
-    <h3>{{ product.title}}</h3>
-    <p>{{ product.description }}</p>
-    <p>{{ product.price }}</p>
-    <a 
-    class="edit-product-btn"
-    [routerLink]="['/edit-product', product.id]"
-  >Edit product</a>
-  </div>
+  <h3>{{ product.title }}</h3>
+  <p>{{ product.description }}</p>
+  <p>{{ product.price }}</p>
+  <a class="edit-product-btn" [routerLink]="['/edit-product', product.id]"
+    >Edit product</a
+  >
+</div>

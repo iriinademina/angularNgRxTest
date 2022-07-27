@@ -9,25 +9,17 @@ import { ProductsResolverService } from '../../../../core/services/edit-product.
 const routes: Routes = [
   {
     path: '',
-    component: EditProductComponent
+    component: EditProductComponent,
   },
   {
     path: ':id',
     component: EditProductComponent,
-    resolve: [ProductsResolverService]
-  }
+    resolve: [ProductsResolverService],
+  },
 ];
 
-
 @NgModule({
-  declarations: [
-    EditProductComponent,
-    EditProductFormComponent
-  ],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes),
-    ReactiveFormsModule
-  ]
+  declarations: [EditProductComponent, EditProductFormComponent],
+  imports: [CommonModule, RouterModule.forChild(routes), ReactiveFormsModule],
 })
-export class EditProductModule { }
+export class EditProductModule {}

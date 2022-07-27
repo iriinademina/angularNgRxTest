@@ -9,6 +9,5 @@ export {
     getProductByIdSelector,
     isLoadingProductByIdSelector,
     deleteProductSuccessSelector
-
   } from "./products.selector";
   
